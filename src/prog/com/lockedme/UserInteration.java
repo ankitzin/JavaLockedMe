@@ -73,7 +73,7 @@ public class UserInteration {
 				switch( bznoption) {
 				case 1:
 					System.out.println("Adding the file");
-					addfile();
+					addfile(path);
 					break;
 				case 2:
 					System.out.println("Deleting the file");
@@ -97,7 +97,24 @@ public class UserInteration {
 		}
 	}
 	
-	static void addfile() {
-		
+	static void addfile(String directorypath) {
+		try {
+			String name = "";
+			System.out.println("Enter the name of file to insert");
+			name = scn.next();
+			String path = directorypath;
+			File f = new File(directorypath+"/"+name+".txt");
+			if(f.createNewFile()) {
+				System.out.println("File Created");
+			}else {
+				if(f.exists()) {
+					System.out.println("File Already Exists");
+				}else {
+					System.out.println("File Doesnt exist");
+				}
+			}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
